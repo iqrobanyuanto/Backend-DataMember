@@ -7,7 +7,7 @@ module.exports = (db, Sequelize) =>{
         },
         member_id: {
             type: Sequelize.INTEGER,
-            allowNull: TRUE
+            allowNull: true
         },
         nama: {
             type: Sequelize.STRING
