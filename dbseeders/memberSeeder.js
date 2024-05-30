@@ -3,6 +3,12 @@ const memberdb = db.member;
 
 exports.seed = async () => {
     try{
+        const username = memberdb.findOne({ where: { username: "user" } });
+        if (username) {
+            console.log("username already exist");
+            return;
+        }
+        
         const newMember = {
             "username": "user",
             "password": "belumdiencrypt",
