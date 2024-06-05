@@ -1,4 +1,32 @@
-Progress
+# Startup Guideline
+1. Clone atau Fork repository ini kedalam device anda
+2. Buat database mysql dan beri nama `datamember`
+3. run project dengan memasukan command pada terminal berupa `npm start`
 
-- CRUD untuk model Data Member
-- Basic Auth (tanpa hashing password, dan tokenizer)
+> [!TIP]
+> Gunakan address: http://localhost:3000 untuk mengakses backend operation
+
+# Route Guideline
+## Authentication Operation Route
+**Http Method: `POST`**
+
+Authentication: `/auth`
+
+## Member Operation Route
+**Http Method: `POST`**
+
+Add Member Data: `/member/create`
+
+**Http Method: `GET`**
+
+Get All Member Data: `/member/get`
+
+Get Member by id: `/member/get/{id}`
+
+**Http Method: `PUT`**
+
+Update Member Data: `/member/update/{id}`
+
+**Http Method: `DELETE`**
+
+Delete Member Data: `/member/delete/{id}`
