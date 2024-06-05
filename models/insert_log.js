@@ -5,10 +5,6 @@ module.exports = (db, Sequelize) =>{
             primaryKey: true,
             autoIncrement: true
         },
-        member_id: {
-            type: Sequelize.INTEGER,
-            allowNull: true
-        },
         nama: {
             type: Sequelize.STRING
         },

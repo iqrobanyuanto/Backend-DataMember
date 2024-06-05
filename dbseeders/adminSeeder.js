@@ -1,11 +1,11 @@
 const db = require('../models/db');
 const adminrdb = db.admin;
-
-module.exports = async () => {
+const adminSeed = async () => {
     try{
-        const username = await adminrdb.findOne({ where: { username: "admin" } });
+        console.log(typeof(adminrdb));
+        const username = await adminrdb.findOne({where: { username: "admin" }});
         if (username) {
-            console.log("username already exist");
+            console.log("data admin already exist");
             return;
         }
         
@@ -21,3 +21,5 @@ module.exports = async () => {
         console.log(err.message);
     }
 }
+
+module.exports = adminSeed;

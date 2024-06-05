@@ -1,11 +1,12 @@
 const db = require('../models/db');
 const memberdb = db.member;
 
-exports.seed = async () => {
+const memberSeed = async () => {
     try{
-        const username = memberdb.findOne({ where: { username: "user" } });
+        console.log(typeof(memberdb));
+        const username = await memberdb.findOne({where: { username: "user" }});
         if (username) {
-            console.log("username already exist");
+            console.log("data member already exist");
             return;
         }
         
@@ -40,3 +41,5 @@ exports.seed = async () => {
         console.log(err.message);
     }
 }
+
+module.exports = memberSeed;
