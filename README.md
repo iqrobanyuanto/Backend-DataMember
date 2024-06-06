@@ -10,7 +10,13 @@
 ## Authentication Operation Route
 **Http Method: `POST`**
 
-Authentication: `/auth`
+Register New Admin Account: `/auth/registerAdmin`
+
+Register New Member Account: `/auth/registerMember`
+
+Login For Admin: `/auth/loginAdmin`
+
+Login For Member: `/auth/loginMember`
 
 ## Member Operation Route
 **Http Method: `POST`**
