@@ -29,12 +29,13 @@ exports.loginAdmin = async (req, res) => {
 
 exports.registerMember = async (req, res) => {
     try{
-        const { namalengkap, email, username, password, } = req.body;
-        const hashedPassword = await bcrypt.hash(password, 10);
+        const { namalengkap, email, username} = req.body;
+        const unhashedPass = req.body.password;
+        const password = await bcrypt.hash(unhashedPass, 10);
         await modelAkunMember.create({
             email,
             username,
-            hashedPassword
+            password
         });
         await modelMember.create({nama: namalengkap});
         res.status(200).json({response: `Akun member ${namalengkap} telah didaftarkan`});
@@ -56,7 +57,8 @@ exports.loginMember = async (req, res) => {
             res.status(401).json({response: "username or password is incorrect"});
             return;
         }
-        //return jwt token
+        const jwtToken = jwtSigning(username);
+        res.status(200).json({response: "login success", token: jwtToken});
     }catch(err){
         res.status(500).json({response: err.message});
     }
