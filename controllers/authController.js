@@ -1,5 +1,5 @@
 const db = require("../models/db");
-const model = db.admin;
+const modelAdmin = db.admin;
 const modelAkunMember = db.memberAccount;
 const modelMember = db.member;
 const bcrypt = require("bcrypt");
@@ -8,24 +8,39 @@ require('dotenv').config();
 
 
 exports.loginAdmin = async (req, res) => {
-    const { username, password } = req.body;
-
-    const account = await model.findOne({ where: { username: username } }).catch((err) => {
-        console.log(err);
-        res.status(500).json({ message: "internal server error" });
-    });
-
-    if (!account) {
-        res.status(401).json({ message: "username is incorrect" });
-        return;
+    try{
+        const {username, password} = req.body;
+        const account = await modelAdmin.findOne({where: {username: username}});
+        if(!account){
+            res.status(401).json({response: "username or password is incorrect"});
+            return;
+        }
+        const passValid = await bcrypt.compare(password, account.password);
+        if(!passValid){
+            res.status(401).json({response: "username or password is incorrect"});
+            return;
+        }
+        const payload = {username: account.username};
+        const jwtToken = jwtSigning(payload);
+        res.status(200).json({response: "login success", token: jwtToken});
+    }catch(err){
+        res.status(500).json({response: err.message});
     }
+}
 
-    if (account.password !== password) {
-        res.status(401).json({ message: "password is incorrect" });
-        return;
+exports.registerAdmin = async (req, res) => {
+    try{
+        const username = req.body.username;
+        const unhashedPass = req.body.password;
+        const password = await bcrypt.hash(unhashedPass, 10);
+        await modelAdmin.create({
+            username,
+            password
+        });
+        res.status(200).json({response: `Akun member ${username} telah didaftarkan`});
+    }catch(err){
+        res.status(500).json({response: err.message});
     }
-
-    res.status(200).json({ message: "login success" });
 }
 
 exports.registerMember = async (req, res) => {
