@@ -30,3 +30,18 @@ Update Member Data: `/member/update/{id}`
 **Http Method: `DELETE`**
 
 Delete Member Data: `/member/delete/{id}`
+
+## Insert Log Operation Route
+**Http Method: `POST`**
+
+Add Insert Log: `/insert-log/create`
+
+**Http Method: `GET`**
+
+Get All Insert Log: `/insert-log/get`
+
+**Http Method: `DELETE`**
+
+Delete All Insert Log: `/insert-log/delete`
+
+
