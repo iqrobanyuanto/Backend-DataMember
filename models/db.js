@@ -4,6 +4,7 @@ const mysql = require('mysql2');
 const adminModel = require('./admin');
 const memberModel = require('./member');
 const insert_logModel = require('./insert_log');
+const memberAccount = require('./akunMember');
 
 const connect = new Sequelizer(process.env.DBNAME, process.env.DBUSER, process.env.DBPASS, {
     host: process.env.DBHOST,
@@ -17,11 +18,13 @@ db.connect = connect;
 db.admin = adminModel(connect, Sequelizer);
 db.member = memberModel(connect, Sequelizer);
 db.insert_log = insert_logModel(connect, Sequelizer);
+db.memberAccount = memberAccount(connect, Sequelizer);
 
 db.checkDB = async () => {    
     try {
         await connect.authenticate()
         await db.admin.sync();
+        await db.memberAccount.sync();
         await db.member.sync();
         await db.insert_log.sync();
 

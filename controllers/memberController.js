@@ -5,8 +5,6 @@ exports.create = async (req,  res) => {
     
     try{
         const {
-          username,
-          password,
           status,
           nama,
           nip,
@@ -30,8 +28,6 @@ exports.create = async (req,  res) => {
         } = req.body;
     
         const newMember = await member.create({
-            username,
-            password,
             status,
             nama,
             nip,
@@ -84,8 +80,6 @@ exports.update = async (req, res) => {
     try{
         const id = req.params.id;
         const {
-          username,
-          password,
           status,
           nama,
           nip,
@@ -110,8 +104,6 @@ exports.update = async (req, res) => {
     
         const updatedMember = await member.update(
           {
-            username,
-            password,
             status,
             nama,
             nip,

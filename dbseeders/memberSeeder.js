@@ -4,16 +4,14 @@ const memberdb = db.member;
 const memberSeed = async () => {
     try{
         console.log(typeof(memberdb));
-        const username = await memberdb.findOne({where: { username: "user" }});
-        if (username) {
+        const nama = await memberdb.findOne({where: { nama: "dogo" }});
+        if (nama) {
             console.log("data member already exist");
             return;
         }
         
         const newMember = {
-            "username": "user",
-            "password": "belumdiencrypt",
-            "status": "admin",
+            "status": "aktif",
             "nama": "dogo",
             "nip": 1020310203,
             "tempat_lahir": "Bandung",

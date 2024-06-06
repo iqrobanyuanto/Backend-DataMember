@@ -1,9 +1,12 @@
 const db = require("../models/db");
 const model = db.admin;
+const modelAkunMember = db.memberAccount;
+const modelMember = db.member;
+const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken');
 
-// pasword belum di hash
-// belum ada jwt
-module.exports = async (req, res) => {
+
+exports.loginAdmin = async (req, res) => {
     const { username, password } = req.body;
 
     const account = await model.findOne({ where: { username: username } }).catch((err) => {
@@ -22,4 +25,46 @@ module.exports = async (req, res) => {
     }
 
     res.status(200).json({ message: "login success" });
+}
+
+exports.registerMember = async (req, res) => {
+    try{
+        const { namalengkap, email, username, password, } = req.body;
+        const hashedPassword = await bcrypt.hash(password, 10);
+        await modelAkunMember.create({
+            email,
+            username,
+            hashedPassword
+        });
+        await modelMember.create({nama: namalengkap});
+        res.status(200).json({response: `Akun member ${namalengkap} telah didaftarkan`});
+    }catch(err){
+        res.status(500).json({response: err.message});
+    }
+}
+
+exports.loginMember = async (req, res) => {
+    try{
+        const {username, password} = req.body;
+        const account = await modelAkunMember.findOne({where: {username: username}});
+        if(!account){
+            res.status(401).json({response: "username or password is incorrect"});
+            return;
+        }
+        const passValid = await bcrypt.compare(password, account.password);
+        if(!passValid){
+            res.status(401).json({response: "username or password is incorrect"});
+            return;
+        }
+        //return jwt token
+    }catch(err){
+        res.status(500).json({response: err.message});
+    }
+}
+
+function jwtSigning(payload){
+    const options = {
+        expiresIn: process.env.EXPIRATION_TIME
+    };
+    return jwt.sign(payload, process.env.SECRET_TOKEN, options);
 }
