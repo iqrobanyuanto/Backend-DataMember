@@ -4,6 +4,7 @@ const modelAkunMember = db.memberAccount;
 const modelMember = db.member;
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 
 exports.loginAdmin = async (req, res) => {
@@ -57,7 +58,8 @@ exports.loginMember = async (req, res) => {
             res.status(401).json({response: "username or password is incorrect"});
             return;
         }
-        const jwtToken = jwtSigning(username);
+        const payload = {email: account.email , username: account.username};
+        const jwtToken = jwtSigning(payload);
         res.status(200).json({response: "login success", token: jwtToken});
     }catch(err){
         res.status(500).json({response: err.message});
@@ -68,5 +70,5 @@ function jwtSigning(payload){
     const options = {
         expiresIn: process.env.EXPIRATION_TIME
     };
-    return jwt.sign(payload, process.env.SECRET_TOKEN, options);
+    return jwt.sign(payload, process.env.SECRET_KEY, options);
 }
