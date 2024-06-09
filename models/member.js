@@ -1,10 +1,5 @@
 module.exports = (db, Sequelize) =>{
     const Member = db.define("member", {
-        id: {
-            type: Sequelize.INTEGER,
-            primaryKey: true,
-            autoIncrement: true
-        },
         status: {
             type: Sequelize.STRING
         },
@@ -42,24 +37,6 @@ module.exports = (db, Sequelize) =>{
             type: Sequelize.STRING
         },
         program_studi: {
-            type: Sequelize.STRING
-        },
-        pendidikan_s1: {
-            type: Sequelize.STRING
-        },
-        universitas_s1: {
-            type: Sequelize.STRING
-        },
-        pendidikan_s2: {
-            type: Sequelize.STRING
-        },
-        universitas_s2: {
-            type: Sequelize.STRING
-        },
-        pendidikan_s3: {
-            type: Sequelize.STRING
-        },
-        universitas_s3: {
             type: Sequelize.STRING
         },
         foto: {

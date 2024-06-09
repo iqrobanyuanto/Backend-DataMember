@@ -48,12 +48,12 @@ exports.registerMember = async (req, res) => {
         const { namalengkap, email, username} = req.body;
         const unhashedPass = req.body.password;
         const password = await bcrypt.hash(unhashedPass, 10);
-        await modelAkunMember.create({
+        const newMember = await modelAkunMember.create({
             email,
             username,
             password
         });
-        await modelMember.create({nama: namalengkap});
+        newMember.createMember({nama: namalengkap})
         res.status(200).json({response: `Akun member ${namalengkap} telah didaftarkan`});
     }catch(err){
         res.status(500).json({response: err.message});

@@ -15,7 +15,19 @@ const memberAccountSeed = async () => {
             "password": "user",
         };
 
-        await akunMemberrdb.create(newMemberAccount);
+        const newMember = {
+            "nama": "xeloreon"
+        };
+
+        const newAlur = {
+            "riwayat_pendidikan": "S1",
+            "riwayat_universitas": "Telkom University",
+            "rowRiwayat": 1
+        }
+
+        const memberAkun = await akunMemberrdb.create(newMemberAccount);
+        const memberData = await memberAkun.createMember(newMember);
+        await memberData.createAlur_pendidikan(newAlur);
     
     
     }catch(err){
