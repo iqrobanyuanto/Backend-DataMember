@@ -1,5 +1,7 @@
 const db = require('../models/db');
 const adminrdb = db.admin;
+const bcrypt = require("bcrypt");
+
 const adminSeed = async () => {
     try{
         console.log(typeof(adminrdb));
@@ -13,6 +15,7 @@ const adminSeed = async () => {
             "username": "admin",
             "password": "admin",
         };
+        newAdmin.password = await bcrypt.hash(newAdmin.password, 10);
 
         await adminrdb.create(newAdmin);
     

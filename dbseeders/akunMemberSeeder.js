@@ -1,5 +1,7 @@
 const db = require('../models/db');
 const akunMemberrdb = db.memberAccount;
+const bcrypt = require("bcrypt");
+
 const memberAccountSeed = async () => {
     try{
         console.log(typeof(akunMemberrdb));
@@ -14,6 +16,7 @@ const memberAccountSeed = async () => {
             "username": "user",
             "password": "user",
         };
+        newMemberAccount.password = await bcrypt.hash(newMemberAccount.password, 10);
 
         const newMember = {
             "nama": "xeloreon"
