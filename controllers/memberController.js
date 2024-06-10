@@ -68,8 +68,8 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
     try{
-        const id = req.params.id;
-        const memberById = await member.findByPk(id);
+        const memberId = req.params.memberId;
+        const memberById = await member.findOne({where: {memberAccountId: memberId}});
         res.status(200).json({response: memberById});
     }catch(err){
         res.status(500).json({response: err.message});
@@ -78,7 +78,7 @@ exports.getById = async (req, res) => {
 
 exports.update = async (req, res) => {
     try{
-        const id = req.params.id;
+        const memberId = req.params.memberId;
         const {
           status,
           nama,
@@ -126,11 +126,11 @@ exports.update = async (req, res) => {
             foto,
           },
           {
-            where: { id: id },
+            where: {memberAccountId: memberId},
           }
         );
     
-        res.status(200).json({response: updatedMember});
+        res.status(200).json({response: `member ${nama} data updated`});
     }catch(err){
         res.status(500).json({response: err.message});
     }
@@ -138,9 +138,9 @@ exports.update = async (req, res) => {
 
 exports.delete = async (req, res) => {
     try {
-        const id = req.params.id;
+        const memberId = req.params.memberId;
         const deletedMember = await member.destroy({
-        where: { id: id },
+        where: { memberAccountId: memberId },
         });
         res.status(200).json({ response: deletedMember });
     } catch (err) {
