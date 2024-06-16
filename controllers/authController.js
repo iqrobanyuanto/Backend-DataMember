@@ -37,7 +37,7 @@ exports.registerAdmin = async (req, res) => {
             username,
             password
         });
-        res.status(200).json({response: `Akun member ${username} telah didaftarkan`});
+        res.status(200).json({response: `Akun Admin ${username} telah didaftarkan`});
     }catch(err){
         res.status(500).json({response: err.message});
     }
