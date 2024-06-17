@@ -2,11 +2,11 @@ const db = require('../models/db');
 
 exports.create = async (req, res) => {
     try {
-        const { nama, nip, program_studi, tanggal_input } = req.body;
+        const { nama, email, username, tanggal_input } = req.body;
         const newInsert_log = await db.insert_log.create({
             nama,
-            nip,
-            program_studi,
+            email,
+            username,
             tanggal_input
         });
         res.status(200).json({ response: newInsert_log });

@@ -8,10 +8,10 @@ module.exports = (db, Sequelize) =>{
         nama: {
             type: Sequelize.STRING
         },
-        nip: {
-            type: Sequelize.INTEGER
+        email: {
+            type: Sequelize.STRING
         },
-        program_studi: {
+        username: {
             type: Sequelize.STRING
         },
         tanggal_input: {

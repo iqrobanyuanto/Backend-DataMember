@@ -1,7 +1,7 @@
 const db = require("../models/db");
 const modelAdmin = db.admin;
 const modelAkunMember = db.memberAccount;
-const modelMember = db.member;
+const modelinsertlog = db.insert_log;
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
@@ -48,12 +48,20 @@ exports.registerMember = async (req, res) => {
         const { namalengkap, email, username} = req.body;
         const unhashedPass = req.body.password;
         const password = await bcrypt.hash(unhashedPass, 10);
+        const tanggal_input = Date.now();
         const newMember = await modelAkunMember.create({
             email,
             username,
             password
         });
-        newMember.createMember({nama: namalengkap})
+        const nama = namalengkap;
+        await newMember.createMember({nama});
+        await modelinsertlog.create({
+            nama,
+            email,
+            username,
+            tanggal_input
+        });
         res.status(200).json({response: `Akun member ${namalengkap} telah didaftarkan`});
     }catch(err){
         res.status(500).json({response: err.message});
