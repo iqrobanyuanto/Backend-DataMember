@@ -152,9 +152,9 @@ Add Insert Log: `/insert-log/create`
 > 
     { 
     "nama": string,
-    "nip": int,
-    "program_studi": string,
-    "tanggal_input": date
+    "email": string,
+    "username": string,
+    "tanggal_input": datetime
     }
 
 **Http Method: `GET`**
@@ -167,9 +167,9 @@ Get All Insert Log: `/insert-log/get`
     { 
       "id": int
       "nama": string,
-      "nip": int,
-      "program_studi": string,
-      "tanggal_input": date
+      "email": string,
+      "username": string,
+      "tanggal_input": datetime
       "createdAt": datetime,
       "updatedAt": datetime
     }
