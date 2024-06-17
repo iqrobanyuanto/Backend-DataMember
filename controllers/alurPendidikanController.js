@@ -3,8 +3,7 @@ const alurPendidikan = db.alurPendidikan;
 
 exports.create = async (req, res) => {
     try{
-        const {memberId, rowRiwayat} = req.params;
-        const {riwayat_pendidikan, riwayat_universitas} = req.body;
+        const {riwayat_pendidikan, riwayat_universitas, rowRiwayat, memberId} = req.body;
         await alurPendidikan.create({
             riwayat_pendidikan,
             riwayat_universitas,

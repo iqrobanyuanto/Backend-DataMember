@@ -4,7 +4,7 @@ const alurPendidikanController = require('../controllers/alurPendidikanControlle
 
 router.use(bodyParser.json());
 
-router.post('/create/:memberId/:rowRiwayat',alurPendidikanController.create);
+router.post('/create',alurPendidikanController.create);
 router.get('/getAll/:memberId',alurPendidikanController.getAll);
 router.put('/update/:memberId/:rowRiwayat',alurPendidikanController.update);
 router.delete('/delete/:memberId/:rowRiwayat',alurPendidikanController.delete);

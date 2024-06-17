@@ -18,12 +18,6 @@ exports.create = async (req,  res) => {
           universitas,
           fakultas,
           program_studi,
-          pendidikan_s1,
-          universitas_s1,
-          pendidikan_s2,
-          universitas_s2,
-          pendidikan_s3,
-          universitas_s3,
           foto,
         } = req.body;
     
@@ -41,12 +35,6 @@ exports.create = async (req,  res) => {
             universitas,
             fakultas,
             program_studi,
-            pendidikan_s1,
-            universitas_s1,
-            pendidikan_s2,
-            universitas_s2,
-            pendidikan_s3,
-            universitas_s3,
             foto,
         });
     
@@ -93,16 +81,10 @@ exports.update = async (req, res) => {
           universitas,
           fakultas,
           program_studi,
-          pendidikan_s1,
-          universitas_s1,
-          pendidikan_s2,
-          universitas_s2,
-          pendidikan_s3,
-          universitas_s3,
           foto,
         } = req.body;
     
-        const updatedMember = await member.update(
+        await member.update(
           {
             status,
             nama,
@@ -117,12 +99,6 @@ exports.update = async (req, res) => {
             universitas,
             fakultas,
             program_studi,
-            pendidikan_s1,
-            universitas_s1,
-            pendidikan_s2,
-            universitas_s2,
-            pendidikan_s3,
-            universitas_s3,
             foto,
           },
           {
