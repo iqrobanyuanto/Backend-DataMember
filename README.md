@@ -194,8 +194,6 @@ Add New Alur Pendidikan: `/create/:memberId/:rowRiwayat`
     { 
       "riwayat_pendidikan": string,
       "riwayat_universitas": string,
-      "rowRiwayat": int,
-      "memberId": int,
     }
 
 **Http Method: `PUT`**
