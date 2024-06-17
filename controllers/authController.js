@@ -20,7 +20,7 @@ exports.loginAdmin = async (req, res) => {
             res.status(401).json({response: "username or password is incorrect"});
             return;
         }
-        const payload = {username: account.username};
+        const payload = {username: account.username, role: "admin"};
         const jwtToken = jwtSigning(payload);
         res.status(200).json({response: "login success", token: jwtToken});
     }catch(err){
@@ -73,7 +73,7 @@ exports.loginMember = async (req, res) => {
             res.status(401).json({response: "username or password is incorrect"});
             return;
         }
-        const payload = {email: account.email , username: account.username};
+        const payload = {username: account.username, role: "member"};
         const jwtToken = jwtSigning(payload);
         res.status(200).json({response: "login success", token: jwtToken});
     }catch(err){
