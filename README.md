@@ -196,7 +196,7 @@ Delete All Insert Log: `/insert-log/delete`
 ## Alur Pendidikan Operation Route
 **Http Method: `POST`**
 
-Add New Alur Pendidikan: `/create/:memberId/:rowRiwayat`
+Add New Alur Pendidikan: `/alur-pendidikan/create/:memberId/:rowRiwayat`
 > [!NOTE]
 >
 > **Add New Alur Pendidikan Request Body**
@@ -208,7 +208,7 @@ Add New Alur Pendidikan: `/create/:memberId/:rowRiwayat`
 
 **Http Method: `PUT`**
 
-Update Alur Pendidikan: `/update/:memberId/:rowRiwayat`
+Update Alur Pendidikan: `/alur-pendidikan/update/:memberId/:rowRiwayat`
 > [!NOTE]
 >
 > **Update Alur Pendidikan Request Body**
@@ -220,7 +220,7 @@ Update Alur Pendidikan: `/update/:memberId/:rowRiwayat`
 
 **Http Method: `GET`**
 
-Get All Alur Pendidikan For One Member: `/getAll/:memberId`
+Get All Alur Pendidikan For One Member: `/alur-pendidikan/getAll/:memberId`
 > [!NOTE]
 >
 > **Get All Alur Pendidikan For One Member Response**
@@ -234,7 +234,7 @@ Get All Alur Pendidikan For One Member: `/getAll/:memberId`
 
 **Http Method: `DELETE`**
 
-Delete Alur Pendidikan: `/delete/:memberId/:rowRiwayat`
+Delete Alur Pendidikan: `/alur-pendidikan/delete/:memberId/:rowRiwayat`
 > [!NOTE]
 >
 > **Delete Alur Pendidikan Response**
