@@ -1,6 +1,8 @@
 const db = require("../models/db");
 const modelAdmin = db.admin;
 const modelAkunMember = db.memberAccount;
+const modelMember = db.member;
+const modelRiwayat = db.alurPendidikan;
 const modelinsertlog = db.insert_log;
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
@@ -31,8 +33,17 @@ exports.loginAdmin = async (req, res) => {
 exports.registerAdmin = async (req, res) => {
     try{
         const username = req.body.username;
+
+        const data = await modelAdmin.findOne({where: {username: username}});
+
+        if(data){
+            res.status(400).json({response: `Admin dengan username ${username} sudah terdaftar, gunakan username lain`});
+            return;
+        }
+
         const unhashedPass = req.body.password;
         const password = await bcrypt.hash(unhashedPass, 10);
+
         await modelAdmin.create({
             username,
             password
@@ -46,6 +57,14 @@ exports.registerAdmin = async (req, res) => {
 exports.registerMember = async (req, res) => {
     try{
         const { namalengkap, email, username} = req.body;
+
+        const data = await modelAkunMember.findOne({where: {username: username}});
+
+        if(data){
+            res.status(400).json({response: `Member dengan username ${username} sudah terdaftar, gunakan username lain`});
+            return;
+        }
+
         const unhashedPass = req.body.password;
         const password = await bcrypt.hash(unhashedPass, 10);
         const tanggal_input = Date.now();
@@ -94,4 +113,18 @@ function jwtSigning(payload){
         expiresIn: process.env.EXPIRATION_TIME
     };
     return jwt.sign(payload, process.env.SECRET_KEY, options);
+}
+
+exports.deleteMemberAccount = async (req, res) => {
+    try{
+        const id = req.params.accountMemberId;
+
+        await modelRiwayat.destroy({where: {memberId: id}});
+        await modelMember.destroy({where: {memberAccountId: id}});
+        await modelAkunMember.destroy({where: {id: id}});
+
+        res.status(200).json({response: `Akun member dengan id ${id} telah dihapus`});
+    }catch(err){
+        res.status(500).json({response: err.message});
+    }
 }

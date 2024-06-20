@@ -8,5 +8,6 @@ router.post('/loginAdmin', authController.loginAdmin);
 router.post('/registerAdmin', authController.registerAdmin);
 router.post('/registerMember', authController.registerMember);
 router.post('/loginMember', authController.loginMember);
+router.delete('/deleteMember/:accountMemberId', authController.deleteMemberAccount);
 
 module.exports = router;
