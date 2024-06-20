@@ -45,6 +45,16 @@ Login For Member: `/auth/loginMember`
       token: string
     }
 
+Delete Member Account `/auth/deleteMember/{accountMemberId}`
+
+> [!NOTE]
+>
+> **Delete Member Account Response**
+> 
+    {
+      response: string,
+    }
+
 ## Member Operation Route
 **Http Method: `POST`**
 
