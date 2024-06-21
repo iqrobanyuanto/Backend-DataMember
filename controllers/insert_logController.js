@@ -17,7 +17,9 @@ exports.create = async (req, res) => {
 
 exports.getAll = async (req, res) => {
     try {
-        const allInsert_log = await db.insert_log.findAll();
+        const allInsert_log = await db.insert_log.findAll({
+            order: [['tanggal_input', 'DESC']]
+        });
         res.status(200).json({ response: allInsert_log });
     } catch (err) {
         res.status(500).json({ response: err.message });
