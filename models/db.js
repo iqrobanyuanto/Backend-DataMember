@@ -10,12 +10,6 @@ const alurPendidikan = require('./alurPendidikan');
 const connect = new Sequelizer(process.env.DBNAME, process.env.DBUSER, process.env.DBPASS, {
     host: process.env.DBHOST,
     dialect: 'mssql',
-    pool: {
-        max: 5,
-        min: 0,
-        acquire: 30000,
-        idle: 10000
-    }
 });
 
 db = {};
