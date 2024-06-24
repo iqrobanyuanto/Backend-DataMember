@@ -74,7 +74,8 @@ exports.registerMember = async (req, res) => {
             password
         });
         const nama = namalengkap;
-        await newMember.createMember({nama});
+        const status = 'aktif';
+        await newMember.createMember({nama, status});
         await modelinsertlog.create({
             nama,
             email,
