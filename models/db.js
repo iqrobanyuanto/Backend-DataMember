@@ -1,6 +1,6 @@
 const Sequelizer = require('sequelize');
 require('dotenv').config();
-const mysql = require('mysql2');
+const sql = require('mssql');
 const adminModel = require('./admin');
 const memberModel = require('./member');
 const insert_logModel = require('./insert_log');
@@ -9,8 +9,7 @@ const alurPendidikan = require('./alurPendidikan');
 
 const connect = new Sequelizer(process.env.DBNAME, process.env.DBUSER, process.env.DBPASS, {
     host: process.env.DBHOST,
-    dialect: 'mysql',
-    dialectModule: mysql
+    dialect: 'mssql',
 });
 
 db = {};
@@ -27,7 +26,6 @@ db.memberAccount.hasOne(db.member,{
     foreignKey: {
         allowNull: false
     },
-    onDelete: 'RESTRICT',
 })
 db.member.belongsTo(db.memberAccount);
 
@@ -35,14 +33,13 @@ db.member.hasMany(db.alurPendidikan,{
     foreignKey: {
         allowNull: false
     },
-    onDelete: 'RESTRICT',
 })
 db.alurPendidikan.belongsTo(db.member);
 
 
 db.checkDB = async () => {    
     try {
-        await connect.authenticate()
+        await connect.authenticate();
         await db.admin.sync();
         await db.memberAccount.sync();
         await db.member.sync();

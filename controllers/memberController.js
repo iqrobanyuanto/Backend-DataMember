@@ -20,6 +20,8 @@ exports.create = async (req,  res) => {
           program_studi,
           foto,
         } = req.body;
+
+        status = 'aktif';
     
         const newMember = await member.create({
             status,
@@ -83,7 +85,7 @@ exports.update = async (req, res) => {
           program_studi,
           foto,
         } = req.body;
-    
+
         await member.update(
           {
             status,
