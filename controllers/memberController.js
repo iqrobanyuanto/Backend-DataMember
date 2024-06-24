@@ -67,6 +67,7 @@ exports.getById = async (req, res) => {
 exports.update = async (req, res) => {
     try{
         const memberId = req.params.memberId;
+        const imageFile = req.file;
         const {
           status,
           nama,
@@ -83,6 +84,9 @@ exports.update = async (req, res) => {
           program_studi,
           foto,
         } = req.body;
+
+        console.log(req.body);
+        console.log(req.file);
     
         await member.update(
           {
