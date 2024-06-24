@@ -20,6 +20,8 @@ exports.create = async (req,  res) => {
           program_studi,
           foto,
         } = req.body;
+
+        status = 'aktif';
     
         const newMember = await member.create({
             status,
@@ -67,7 +69,6 @@ exports.getById = async (req, res) => {
 exports.update = async (req, res) => {
     try{
         const memberId = req.params.memberId;
-        const imageProfile = req.file;
         const {
           status,
           nama,
