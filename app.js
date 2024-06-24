@@ -7,7 +7,7 @@ const alurPendidikanRoute = require('./routes/alurPendidikanRoute');
 const fotoProfilRoute = require('./routes/fotoProfilRoute');
 const cors = require('cors');
 
-//dbinit();
+dbinit();
 
 app.use(cors({
     origin: '*'
