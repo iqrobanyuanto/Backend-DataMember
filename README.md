@@ -4,7 +4,8 @@
 3. run project dengan memasukan command pada terminal berupa `npm start`
 
 > [!TIP]
-> Gunakan address: http://localhost:5000 untuk mengakses backend operation
+> Gunakan address: `http://localhost:5000` untuk local backend
+> Gunakan address: 
 
 # Route Guideline
 ## Authentication Operation Route
@@ -196,7 +197,7 @@ Delete All Insert Log: `/insert-log/delete`
 ## Alur Pendidikan Operation Route
 **Http Method: `POST`**
 
-Add New Alur Pendidikan: `/alur-pendidikan/create/:memberId/:rowRiwayat`
+Add New Alur Pendidikan: `/alur-pendidikan/create/{memberId}/{rowRiwayat}`
 > [!NOTE]
 >
 > **Add New Alur Pendidikan Request Body**
@@ -208,7 +209,7 @@ Add New Alur Pendidikan: `/alur-pendidikan/create/:memberId/:rowRiwayat`
 
 **Http Method: `PUT`**
 
-Update Alur Pendidikan: `/alur-pendidikan/update/:memberId/:rowRiwayat`
+Update Alur Pendidikan: `/alur-pendidikan/update/{memberId}/{rowRiwayat}`
 > [!NOTE]
 >
 > **Update Alur Pendidikan Request Body**
@@ -220,7 +221,7 @@ Update Alur Pendidikan: `/alur-pendidikan/update/:memberId/:rowRiwayat`
 
 **Http Method: `GET`**
 
-Get All Alur Pendidikan For One Member: `/alur-pendidikan/getAll/:memberId`
+Get All Alur Pendidikan For One Member: `/alur-pendidikan/getAll/{memberId}`
 > [!NOTE]
 >
 > **Get All Alur Pendidikan For One Member Response**
@@ -234,9 +235,55 @@ Get All Alur Pendidikan For One Member: `/alur-pendidikan/getAll/:memberId`
 
 **Http Method: `DELETE`**
 
-Delete Alur Pendidikan: `/alur-pendidikan/delete/:memberId/:rowRiwayat`
+Delete Alur Pendidikan: `/alur-pendidikan/delete/{memberId}/{rowRiwayat}`
 > [!NOTE]
 >
 > **Delete Alur Pendidikan Response**
 >
 > {response}
+
+## Foto Profil Operation Route
+**Http Method: `POST`**
+Update or Add New Foto Profil: `/foto-profil/updateImage/{memberId}`
+> [!TIP]
+> Jika ingin menggunakan method ini dengan mengaitkanya pada markup form dalam HTML tambahkan attribute berikut:
+> - enctype = "multipart/form-data"
+> 
+> Dan beri nama markup input, dengan nama berikut:
+> - name = "profileImage"
+>
+> Berikut Contoh Secara Keseluruhan:
+> ```
+>  <form action={Endpoint} method="post" enctype="multipart/form-data">
+>  <input type="file" name="profileImage" />
+>  </form>
+>  ```
+
+> [!NOTE]
+>
+> **Update or Add New Foto Profil form-data Request**
+> 
+    { 
+      "profileImage": File
+    }
+
+> [!NOTE]
+> **Update or Add New Foto Profil Response**
+> 
+    { 
+      "Response": string,
+      "imageUrl": string (Link foto)
+    }
+
+**Http Method: `GET`**
+Get Link Foto Profil: `/foto-profil/getImage/{memberId}`
+> [!NOTE]
+>
+> **Get Link Foto Profil Response**
+> 
+    { 
+      "imageUrl": string (Link foto)
+    }
+
+
+
