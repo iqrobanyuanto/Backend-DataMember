@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/103246b0-1a72-474a-ac28-bddc24532915/resourceGroups/humic-datamember_group/providers/Microsoft.Web/sites/datamember-backend",
+    "appService.deploySubpath": "."
+}
