@@ -1,12 +1,15 @@
-const { DefaultAzureCredential } = require('@azure/identity');
 const { BlobServiceClient } = require('@azure/storage-blob');
 
-const accountName = process.env.AZURE_STORAGE_ACCOUNT_NAME;
-if (!accountName) throw Error('Azure Storage accountName not found');
+const AZURE_STORAGE_CONNECTION_STRING = 
+  process.env.AZURE_STORAGE_CONNECTION_STRING;
 
-const blobServiceClient = new BlobServiceClient(
-  `https://${accountName}.blob.core.windows.net`,
-  new DefaultAzureCredential()
+if (!AZURE_STORAGE_CONNECTION_STRING) {
+  throw Error('Azure Storage Connection string not found');
+}
+
+// Create the BlobServiceClient object with connection string
+const blobServiceClient = BlobServiceClient.fromConnectionString(
+  AZURE_STORAGE_CONNECTION_STRING
 );
 
 const containerName = process.env.AZURE_STORAGE_CONTAINER_NAME;

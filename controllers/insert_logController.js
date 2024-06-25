@@ -28,7 +28,9 @@ exports.getAll = async (req, res) => {
 
 exports.deleteAll = async (req, res) => {
     try {
-        await db.insert_log.destroy();
+        await db.insert_log.destroy({
+            truncate: true,
+          });
         res.status(200).json({ response: "Semua Data Log berhasil dihapus" });
     } catch (err) {
         res.status(500).json({ response: err.message });

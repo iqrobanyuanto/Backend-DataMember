@@ -1,15 +1,21 @@
 const Sequelizer = require('sequelize');
 require('dotenv').config();
-const sql = require('mssql');
 const adminModel = require('./admin');
 const memberModel = require('./member');
 const insert_logModel = require('./insert_log');
 const memberAccount = require('./akunMember');
 const alurPendidikan = require('./alurPendidikan');
 
-const connect = new Sequelizer(process.env.DBNAME, process.env.DBUSER, process.env.DBPASS, {
-    host: process.env.DBHOST,
-    dialect: 'mssql',
+const dbname = process.env.DBNAME || process.env.DBNAMELOCAL;
+const dbuser = process.env.DBUSER || process.env.DBUSERLOCAL;
+const dbpass = process.env.DBPASS || process.env.DBPASSLOCAL;
+const dbhost = process.env.DBHOST || process.env.DBHOSTLOCAL;
+
+const dbms = !process.env.PORT ? 'mysql' : 'mssql';
+
+const connect = new Sequelizer(dbname, dbuser, dbpass, {
+    host: dbhost,
+    dialect: dbms,
     dialectOptions: {
         requestTimeout: 60000
     }
